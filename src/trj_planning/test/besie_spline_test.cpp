@@ -1,4 +1,4 @@
-#include "../besie_spline.h"
+#include "../curves/besie_spline.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -26,7 +26,7 @@ int main(int argc , char *argv[]){
     BesieSpline bspline(2);
     bspline.generate_spline(p);
 
-    file<<"x y w l\n";
+    file<<"x y l\n";
     for(double l=0.0; l< bspline.len(); l+=0.001){
         Eigen::VectorXd point = bspline.point(l);
         std::string row = std::to_string(point(0)) + "," + std::to_string(point(1)) + "," + std::to_string(l);
@@ -36,4 +36,3 @@ int main(int argc , char *argv[]){
 
     return 0;
 }
-

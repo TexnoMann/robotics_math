@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "math.h"
-#include "trj_planer.h"
+#include "../trj_planer.h"
 #include <Eigen/Core>
 #include <Eigen/Dense>
 #include <iostream>
