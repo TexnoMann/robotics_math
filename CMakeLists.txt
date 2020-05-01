@@ -26,6 +26,8 @@ add_library(robotics_math SHARED
         src/trj_planning/planners/lspb.cpp
         src/trj_planning/planners/cubic_spline.h
         src/trj_planning/planners/cubic_spline.cpp
+        src/path_planning/graph_map.h
+        src/path_planning/graph_map.cpp
         )
 
 if(catkin_FOUND)
