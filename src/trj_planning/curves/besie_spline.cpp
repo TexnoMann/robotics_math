@@ -11,7 +11,7 @@ BesieSpline::BesieSpline(int dim) {
 double BesieSpline::len() {
     return _length;
 }
-void BesieSpline::generate_spline(Path const path){
+void BesieSpline::generate_spline(Path const & path){
     _size = path.size();
     _src_path = path;
     _part_dist.reserve(_size-1);
@@ -53,7 +53,7 @@ void BesieSpline::generate_spline(Path const path){
         _length+=_part_dist[i];
     }
     _hermite_spline_matrix.block(2*(_size-1)-1,2*(_size-1)-2,1,2)<<-1, 2;
-    std::cout<<_hermite_spline_matrix<<std::endl;
+//    std::cout<<_hermite_spline_matrix<<std::endl;
     for(int b=0; b<_dim; b++) {
         _control_points[b]((_size-1)*2-1) = _src_path[_size - 1](b);
     }

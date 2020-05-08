@@ -10,7 +10,7 @@
 class BesieSpline{
 public:
     BesieSpline(int dim);
-    void generate_spline(Path const path);
+    void generate_spline(Path const & path);
     double len();
     Eigen::VectorXd point(double dist);
 private:

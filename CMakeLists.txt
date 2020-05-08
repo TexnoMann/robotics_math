@@ -26,8 +26,12 @@ add_library(robotics_math SHARED
         src/trj_planning/planners/lspb.cpp
         src/trj_planning/planners/cubic_spline.h
         src/trj_planning/planners/cubic_spline.cpp
+
         src/path_planning/graph_map.h
         src/path_planning/graph_map.cpp
+
+        src/controllers/pid.h
+        src/controllers/pid.cpp
         )
 
 if(catkin_FOUND)
@@ -43,7 +47,11 @@ if(catkin_FOUND)
             LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
             RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 
-    install(DIRECTORY src/trj_planning
+    install(DIRECTORY
+            src/trj_planning
+            src/path_planning
+            src/controllers
+            src/localization
             DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 endif()
 
@@ -51,6 +59,9 @@ endif()
 
 add_executable(test_lspb_planer src/trj_planning/test/lspb_test.cpp)
 target_link_libraries(test_lspb_planer robotics_math)
+
+add_executable(test_graph_gen src/path_planning/test/graph_generation_test.cpp)
+target_link_libraries(test_graph_gen robotics_math)
 
 add_executable(test_besie_splines src/trj_planning/test/besie_spline_test.cpp)
 target_link_libraries(test_besie_splines robotics_math)
