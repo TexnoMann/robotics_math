@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(robotics_math CXX)
-
+add_compile_options(-std=c++11)
 find_package(catkin QUIET)
 
 if(catkin_FOUND)
@@ -14,6 +14,7 @@ find_package(Eigen3 REQUIRED Core)
 if(catkin_FOUND)
     catkin_package(
             INCLUDE_DIRS src
+            CATKIN_DEPENDS roscpp std_msgs
             LIBRARIES robotics_math)
 endif()
 
@@ -32,6 +33,9 @@ add_library(robotics_math SHARED
 
         src/controllers/pid.h
         src/controllers/pid.cpp
+
+        src/localization/monte_carlo.h
+        src/localization/monte_carlo.cpp
         )
 
 if(catkin_FOUND)

@@ -6,8 +6,8 @@
 
 struct Point;
 
-using Path = std::vector<Eigen::VectorXd>;
-using Trj = std::vector<Point>;
+using Path = std::vector<Eigen::VectorXd, Eigen::aligned_allocator<Eigen::VectorXd>>;
+using Trj = std::vector<Point, Eigen::aligned_allocator<Point>>;
 
 struct Point{
 private:
