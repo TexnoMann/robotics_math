@@ -33,7 +33,7 @@ bool Line2dApprox::point_near_line(const Eigen::VectorXd & point, double & dist)
 
 }
 
-void Line2dApprox::add_point(const Eigen::VectorXd & point){
+void Line2dApprox::add_point(Eigen::VectorXd point){
     if(_associate_point_cloud.size()==_threshold_max){
 
         _center_mass_point -= _associate_point_cloud[_index_newpoint]/_associate_point_cloud.size();
@@ -140,6 +140,7 @@ bool PointCloudToVec2d::add_point(const Eigen::VectorXd &potential_point) {
     }
     else{
         //Generate new line
+        std::cout<<"Generate new line: "<< dist<< std::endl;
         Eigen::VectorXd init_point_neiborgh =_cloud_part[cloud_part_index].init_point;
         Eigen::VectorXd finish_point_neiborgh = _cloud_part[cloud_part_index].finish_point;
         if((potential_point - init_point_neiborgh).norm() < _max_dist*2) {
@@ -163,11 +164,11 @@ bool PointCloudToVec2d::add_point(const Eigen::VectorXd &potential_point) {
     return true;
 }
 
-void PointCloudToVec2d::cloud_lines(std::vector <Line2dApprox> &cloud_part) {
+void PointCloudToVec2d::cloud_lines(CLines &cloud_part) {
     cloud_part = _cloud_part;
 }
 
-void PointCloudToVec2d::intersection_points(std::vector<Eigen::VectorXd> & intersection_points){
+void PointCloudToVec2d::intersection_points(PointsArray & intersection_points){
     intersection_points = _intersection_points;
 }
 

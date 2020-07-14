@@ -3,9 +3,14 @@
 #include <Eigen/SVD>
 #include <iostream>
 
+struct Line2dApprox;
+using CLines = std::vector<Line2dApprox, Eigen::aligned_allocator<Line2dApprox>>;
+using PointsArray = std::vector<Eigen::VectorXd, Eigen::aligned_allocator<Eigen::VectorXd>>;
+
+
 struct Line2dApprox{
 private:
-    std::vector<Eigen::VectorXd> _associate_point_cloud;
+    PointsArray _associate_point_cloud;
     double _max_dist;
     long _threshold_min;
     long _threshold_max;
@@ -22,8 +27,9 @@ private:
     double _sumy2;
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     Line2dApprox(double max_dist, int threshold_min, int threshold_max);
-    void add_point(const Eigen::VectorXd & point);
+    void add_point(Eigen::VectorXd  point);
     bool point_near_line(const Eigen::VectorXd & point, double & dist);
     void center_mass_line(Eigen::VectorXd & center_mass);
     bool is_packet();
@@ -34,15 +40,16 @@ public:
 
 class PointCloudToVec2d{
 private:
-    std::vector<Line2dApprox> _cloud_part;
-    std::vector<Eigen::VectorXd> _intersection_points;
+    CLines  _cloud_part;
+    PointsArray _intersection_points;
     double _max_dist;
     long _threshold_min;
     long _threshold_max;
     void _filt();
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     PointCloudToVec2d(double max_dist, int threshold_min, int threshold_max);
     bool add_point(const Eigen::VectorXd  & potential_point);
-    void cloud_lines(std::vector<Line2dApprox> & cloud_part);
-    void intersection_points(std::vector<Eigen::VectorXd> & _intersection_points);
+    void cloud_lines(CLines & cloud_part);
+    void intersection_points(PointsArray & _intersection_points);
 };

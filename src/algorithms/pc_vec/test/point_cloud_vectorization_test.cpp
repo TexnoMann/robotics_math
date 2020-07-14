@@ -17,7 +17,7 @@ int main(int argc , char *argv[]) {
     std::vector<double> xplot_list;
     std::vector<double> yplot_list;
     std::vector<double> yest_list;
-    std::vector <Line2dApprox> cloud_parts;
+    CLines cloud_parts;
     int c=0;
     for(double x=0; x<10.0; x+=0.1){
         Eigen::VectorXd point(2);

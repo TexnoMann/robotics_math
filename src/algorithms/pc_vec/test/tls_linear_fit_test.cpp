@@ -10,7 +10,7 @@ namespace plt = matplotlibcpp;
 int main(int argc , char *argv[]) {
     std::cout << "Start linear tls fit test\n";
 
-    std::vector <Eigen::VectorXd> points;
+    PointsArray points;
     std::vector<double> xplot_list{0,1,2,3,4,5,6};
     std::vector<double> yplot_list{1,2,-1,8,10,14,16};
     std::vector<double> yest_list;
